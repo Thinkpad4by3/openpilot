@@ -79,7 +79,7 @@ class CarController():
       # moment of disengaging, increment the counter based on the last message known to pass Panda safety checks.
       idx = (CS.lka_steering_cmd_counter + 1) % 4
 
-      can_sends.append(gmcan.create_steering_control(self.packer_pt, CanBus.POWERTRAIN, apply_steer, idx, lkas_enabled))
+      can_sends.append(gmcan.create_parking_steering_control(self.packer_pt, CanBus.CHASSIS, apply_steer, idx))
 
     # Gas/regen prep
     if not enabled or CS.pause_long_on_gas_press:
