@@ -81,9 +81,9 @@ class CarController():
 
       pa_steer = (apply_steer*30)+32768
 
-      can_sends.append(gmcan.create_parking_steering_control(self.packer_pt, CanBus.CHASSIS, pa_steer, idx))
+      can_sends.append(gmcan.create_parking_steering_control(self.packer_ch, CanBus.CHASSIS, pa_steer, idx))
 
-    # Gas/regen prep
+    # Gas/regen prepg
     if not enabled or CS.pause_long_on_gas_press:
       # Stock ECU sends max regen when not enabled.
       apply_gas = P.MAX_ACC_REGEN
