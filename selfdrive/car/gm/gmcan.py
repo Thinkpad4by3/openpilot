@@ -13,10 +13,18 @@ def create_steering_control(packer, bus, apply_steer, idx, lkas_active):
 
 def create_parking_steering_control(packer, bus, apply_steer, idx):
 
+  invidx = 0
+  if idx == 0:
+    invidx = 0
+  else:
+    invidx = 4-idx
   values = {
-    "SteeringWheelCmd":apply_steer,
+    "SteeringWheelCmd": apply_steer,
     "RollingCounter": idx,
-    "SteeringWheelChecksum": 0x10000 - idx - apply_steer
+    "SteeringWheelChecksum": 0x10000 - idx - apply_steer,
+    "RollingCounter2": idx,
+    "InvRollingCounter" : invidx,
+    "RequestActive": 1,
   }
 
   return packer.make_can_msg("PACMParkAssitCmd", bus, values)
